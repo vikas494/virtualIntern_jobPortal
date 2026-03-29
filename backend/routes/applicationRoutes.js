@@ -1,5 +1,5 @@
 import express from 'express';
-import { applyForJob, getUserApplications, cancelApplication, getAdminApplications } from '../controllers/applicationController.js';
+import { applyForJob, getUserApplications, cancelApplication, getAdminApplications, updateApplicationStatus } from '../controllers/applicationController.js';
 
 const router = express.Router();
 
@@ -14,5 +14,8 @@ router.delete('/:id', cancelApplication);
 
 // Add the admin route
 router.get('/admin/:adminId', getAdminApplications);
+
+// Add this new route
+router.put('/:id/status', updateApplicationStatus);
 
 export default router;

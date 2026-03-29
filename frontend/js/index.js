@@ -14,6 +14,8 @@ document.getElementById('welcomeMessage').textContent = `Hello, ${user.name}`;
 
 // Show "Post a Job" button only for admins
 if (user.role === 'admin') {
+    document.getElementById('feedTitle').textContent = 'Posted Jobs'; 
+
     const postJobBtn = document.getElementById('postJobBtn');
     postJobBtn.style.display = 'inline-block';
     postJobBtn.addEventListener('click', () => {

@@ -60,6 +60,8 @@ async function fetchDashboardData() {
                 `;
                 applicationsContainer.appendChild(appCard);
             });
+
+            attachStatusListeners();
         } 
         
         // ==========================================
@@ -153,4 +155,49 @@ function attachCancelListeners() {
             }
         });
     });
+}
+
+// --- 4. Handle Approving/Rejecting Applications (Admins Only) ---
+function attachStatusListeners() {
+    // Handle Approve Buttons
+    const approveButtons = document.querySelectorAll('.approve-btn');
+    approveButtons.forEach(button => {
+        button.addEventListener('click', async (e) => {
+            if (!confirm('Are you sure you want to ACCEPT this candidate? An email will be sent to them.')) return;
+            updateStatus(e.target.getAttribute('data-appid'), 'accepted');
+        });
+    });
+
+    // Handle Reject Buttons
+    const rejectButtons = document.querySelectorAll('.reject-btn');
+    rejectButtons.forEach(button => {
+        button.addEventListener('click', async (e) => {
+            if (!confirm('Are you sure you want to REJECT this candidate? An email will be sent to them.')) return;
+            updateStatus(e.target.getAttribute('data-appid'), 'rejected');
+        });
+    });
+}
+
+// Reusable function to make the API call
+async function updateStatus(appId, newStatus) {
+    try {
+        const response = await fetch(`http://localhost:5000/api/applications/${appId}/status`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ status: newStatus })
+        });
+
+        if (response.ok) {
+            alert(`Application successfully ${newStatus}!`);
+            fetchDashboardData(); // Refresh the dashboard to see the new badge
+        } else {
+            const data = await response.json();
+            alert(data.message || 'Failed to update status.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('Server error while updating status.');
+    }
 }
