@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Feed | Job Portal</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">JobPortal</div>
+        <div class="nav-actions">
+            <span id="welcomeMessage" style="font-weight: 500; font-size: 0.875rem;"></span>
+            <button onclick="window.location.href='dashboard.html'" class="btn btn-outline" style="width: auto; border: none;">Dashboard</button>
+            <button id="postJobBtn" class="btn" style="display: none; width: auto;">Post a Job</button>
+            <button id="logoutBtn" class="btn btn-outline" style="width: auto;">Logout</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h2>Recommended Jobs</h2>
+        <div id="jobContainer" class="job-list">
+            <p style="text-align: center; color: var(--text-muted); margin-top: 2rem;">Loading jobs...</p>
+        </div>
+    </main>
+
+    <script src="./js/index.js"></script>
+</body>
+</html>

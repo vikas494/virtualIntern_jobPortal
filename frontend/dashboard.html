@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard | Job Portal</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-brand">JobPortal</div>
+        <div class="nav-actions">
+            <button onclick="window.location.href='index.html'" class="btn btn-outline" style="width: auto;">Back to Feed</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="dashboard-header">
+            <h2 id="userName">Loading Profile...</h2>
+            <p id="userRole" style="color: var(--text-muted); margin-bottom: 1rem;"></p>
+        </div>
+
+        <h3>My Applications</h3>
+        <div id="applicationsContainer" class="job-list">
+            <p style="text-align: center; color: var(--text-muted); margin-top: 2rem;">Loading applications...</p>
+        </div>
+    </main>
+
+    <script src="./js/dashboard.js"></script>
+</body>
+</html>
